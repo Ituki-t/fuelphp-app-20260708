@@ -1,0 +1,25 @@
+# Composer
+vendor/
+fuel/vendor/
+
+# FuelPHP runtime files
+fuel/app/logs/*
+!fuel/app/logs/.gitkeep
+
+fuel/app/cache/*
+!fuel/app/cache/.gitkeep
+
+fuel/app/tmp/*
+!fuel/app/tmp/.gitkeep
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
