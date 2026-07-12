@@ -22,4 +22,17 @@ class Controller_Posts extends Controller_Template
             $this->template->title = 'Create Post';
             $this->template->content = View::forge('posts/create');
     }
+
+
+    public function action_detail($id)
+    {
+        $post = Model_Post::find_by_id($id);
+
+        if (!$post) {
+            return Response::redirect('posts/index');
+        }
+
+        $this->template->title = 'Post Detail';
+        $this->template->content = View::forge('posts/detail', array('post' => $post));
+    }
 }

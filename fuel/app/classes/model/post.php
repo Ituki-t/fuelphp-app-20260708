@@ -24,4 +24,14 @@ class Model_Post extends Model
             ))
             ->execute();
     }
+
+
+    public static function find_by_id($id)
+    {
+        return \DB::select()
+            ->from('posts')
+            ->where('id', $id)
+            ->execute()
+            ->current();
+    }
 }
