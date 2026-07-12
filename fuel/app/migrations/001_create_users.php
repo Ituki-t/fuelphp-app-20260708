@@ -11,8 +11,8 @@ class Create_users
             'username' => array('type' => 'varchar', 'constraint' => 255),
             'email' => array('type' => 'varchar', 'constraint' => 255),
             'password' => array('type' => 'varchar', 'constraint' => 255),
-            'created_at' => array('type' => 'int', 'constraint' => 11),
-            'updated_at' => array('type' => 'int', 'constraint' => 11),
+            'created_at' => array('type' => 'datetime'),
+            'updated_at' => array('type' => 'datetime'),
         ), array('id'));
     }
 
