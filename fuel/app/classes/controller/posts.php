@@ -2,6 +2,15 @@
 
 class Controller_Posts extends Controller_Template
 {
+    public function before()
+    {
+        parent::before();
+
+        if (\Session::get('user_id') === null) {
+            return \Response::redirect('accounts/login');
+        }
+    }
+
     public function action_index()
     {
         $posts = Model_Post::find_all();
