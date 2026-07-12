@@ -7,7 +7,7 @@
         <?php foreach ($posts as $post): ?>
             <div>
                 <h2><?php echo Html::anchor('posts/detail/' . $post['id'], e($post['title'])); ?></h2>
-                <p><?php echo e($post['content']); ?></p>
+                <p><?php echo e($post['body']); ?></p>
             </div>
         <?php endforeach; ?>
     </ul>

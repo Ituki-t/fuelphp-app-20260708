@@ -35,4 +35,27 @@ class Controller_Posts extends Controller_Template
         $this->template->title = 'Post Detail';
         $this->template->content = View::forge('posts/detail', array('post' => $post));
     }
+
+
+    public function action_edit($id)
+    {
+        $post = Model_Post::find_by_id($id);
+
+        if (!$post) {
+            return Response::redirect('posts/index');
+        }
+
+        if (Input::method() == 'POST')
+            {
+                Model_Post::update($id, array(
+                    'title' => Input::post('title'),
+                    'body' => Input::post('body'),
+                    'updated_at' => time(),
+                ));
+                Response::redirect('posts/index');
+            }
+
+        $this->template->title = 'Edit Post';
+        $this->template->content = View::forge('posts/edit', array('post' => $post));
+    }
 }

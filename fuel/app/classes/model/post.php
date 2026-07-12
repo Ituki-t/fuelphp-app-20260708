@@ -34,4 +34,13 @@ class Model_Post extends Model
             ->execute()
             ->current();
     }
+
+
+    public static function update($id, $data)
+    {
+        return \DB::update('posts')
+            ->set($data)
+            ->where('id', $id)
+            ->execute();
+    }
 }
