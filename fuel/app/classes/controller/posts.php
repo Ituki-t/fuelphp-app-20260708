@@ -58,4 +58,19 @@ class Controller_Posts extends Controller_Template
         $this->template->title = 'Edit Post';
         $this->template->content = View::forge('posts/edit', array('post' => $post));
     }
+
+
+
+    public function action_delete($id)
+    {
+        $post = Model_Post::find_by_id($id);
+
+        if (!$post) {
+            return Response::redirect('posts/index');
+        }
+
+        Model_Post::delete($id);
+
+        return Response::redirect('posts/index');
+    }
 }

@@ -43,4 +43,12 @@ class Model_Post extends Model
             ->where('id', $id)
             ->execute();
     }
+
+
+    public static function delete($id)
+    {
+        return \DB::delete('posts')
+            ->where('id', $id)
+            ->execute();
+    }
 }

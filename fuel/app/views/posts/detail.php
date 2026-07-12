@@ -6,3 +6,5 @@
 <p>更新日時: <?php echo date('Y-m-d H:i:s', $post['updated_at']); ?></p>
 
 <p><?php echo Html::anchor('posts/edit/' . $post['id'], '編集'); ?></p>
+<p><?php echo Html::anchor('posts/delete/' . $post['id'], '削除', array('onclick' => "return confirm('本当に削除しますか？')")); ?></p>
+<p><?php echo Html::anchor('posts/index', '一覧に戻る'); ?></p
