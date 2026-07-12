@@ -1,5 +1,9 @@
 <h1>Posts</h1>
 
+<?php echo Html::anchor('posts/create', 'Create New Post'); ?>
+
+<?php echo Html::anchor('accounts/logout', 'Logout'); ?>
+
 <?php if (empty($posts)): ?>
     <p>No posts found.</p>
 <?php else: ?>

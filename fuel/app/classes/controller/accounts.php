@@ -39,4 +39,12 @@ class Controller_Accounts extends Controller_Template
         $this->template->title = 'Login';
         $this->template->content = View::forge('accounts/login', array('error' => $error));
     }
+
+
+    public function action_logout()
+    {
+        \Session::destroy();
+
+        return \Response::redirect('accounts/login');
+    }
 }
