@@ -16,4 +16,27 @@ class Controller_Accounts extends Controller_Template
         $this->template->title = 'Sign Up';
         $this->template->content = View::forge('accounts/signup');
     }
+
+
+    public function action_login()
+    {
+        $error = '';
+
+        if (\Input::method() == 'POST') {
+            $username = \Input::post('username');
+            $password = \Input::post('password');
+
+            $user = Model_User::find_by_username($username);
+
+            if ($user && password_verify($password, $user['password'])) {
+                \Session::set('user_id', $user['id']);
+                \Session::set('username', $user['username']);
+                return \Response::redirect('posts/index');
+            } else {
+                $error = 'Invalid username or password.';
+            }
+        }
+        $this->template->title = 'Login';
+        $this->template->content = View::forge('accounts/login', array('error' => $error));
+    }
 }
