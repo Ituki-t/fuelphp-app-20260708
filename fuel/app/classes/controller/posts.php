@@ -22,9 +22,10 @@ class Controller_Posts extends Controller_Template
 
     public function action_create()
     {
+        $user_id = \Auth::get_user_id();
         if (Input::method() == 'POST')
             {
-                Model_Post::create(Input::post('title'), Input::post('body'));
+                Model_Post::create(Input::post('title'), Input::post('body'), $user_id);
                 Response::redirect('posts/index');
             }
 
