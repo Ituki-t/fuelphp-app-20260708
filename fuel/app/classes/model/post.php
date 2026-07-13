@@ -12,15 +12,15 @@ class Model_Post extends Model
     }
 
 
-    public static function create($title, $body)
+    public static function create($title, $body, $user_id)
     {
         return \DB::insert('posts')
             ->set(array(
                 'title' => $title,
                 'body' => $body,
+                'user_id' => $user_id,
                 'created_at' => time(),
                 'updated_at' => time(),
-                'created_by' => 1,
             ))
             ->execute();
     }
@@ -28,9 +28,14 @@ class Model_Post extends Model
 
     public static function find_by_id($id)
     {
-        return \DB::select()
+        return \DB::select(
+            'posts.*',
+            array('users.username', 'username')
+        )
             ->from('posts')
-            ->where('id', $id)
+            ->join('users')
+            ->on('posts.user_id', '=', 'users.id')
+            ->where('posts.id', $id)
             ->execute()
             ->current();
     }

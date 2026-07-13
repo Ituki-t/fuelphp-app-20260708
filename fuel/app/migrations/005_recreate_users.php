@@ -2,7 +2,7 @@
 
 namespace Fuel\Migrations;
 
-class Create_users
+class Recreate_users
 {
     public function up()
     {
@@ -14,6 +14,20 @@ class Create_users
             'created_at' => array('type' => 'datetime'),
             'updated_at' => array('type' => 'datetime'),
         ), array('id'));
+
+        \DBUtil::create_index(
+            'users',
+            'username',
+            'users_username_unique',
+            'UNIQUE'
+        );
+
+        \DBUtil::create_index(
+            'users',
+            'email',
+            'users_email_unique',
+            'UNIQUE'
+        );
     }
 
     public function down()

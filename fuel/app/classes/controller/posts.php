@@ -2,6 +2,15 @@
 
 class Controller_Posts extends Controller_Template
 {
+    public function before()
+    {
+        parent::before();
+
+        if (\Session::get('user_id') === null) {
+            return \Response::redirect('accounts/login');
+        }
+    }
+
     public function action_index()
     {
         $posts = Model_Post::find_all();
@@ -13,9 +22,10 @@ class Controller_Posts extends Controller_Template
 
     public function action_create()
     {
+        $user_id = \Session::get('user_id');
         if (Input::method() == 'POST')
             {
-                Model_Post::create(Input::post('title'), Input::post('body'));
+                Model_Post::create(Input::post('title'), Input::post('body'), $user_id);
                 Response::redirect('posts/index');
             }
 
@@ -45,6 +55,11 @@ class Controller_Posts extends Controller_Template
             return Response::redirect('posts/index');
         }
 
+        if ($post['user_id'] != \Session::get('user_id')) {
+            \Session::set_flash('error', 'You do not have permission to edit this post.');
+            return Response::redirect('posts/index');
+        }
+
         if (Input::method() == 'POST')
             {
                 Model_Post::update($id, array(
@@ -66,6 +81,11 @@ class Controller_Posts extends Controller_Template
         $post = Model_Post::find_by_id($id);
 
         if (!$post) {
+            return Response::redirect('posts/index');
+        }
+
+        if ($post['user_id'] != \Session::get('user_id')) {
+            \Session::set_flash('error', 'You do not have permission to delete this post.');
             return Response::redirect('posts/index');
         }
 
