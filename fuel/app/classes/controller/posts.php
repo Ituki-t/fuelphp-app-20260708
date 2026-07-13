@@ -22,7 +22,7 @@ class Controller_Posts extends Controller_Template
 
     public function action_create()
     {
-        $user_id = \Auth::get_user_id();
+        $user_id = \Session::get('user_id');
         if (Input::method() == 'POST')
             {
                 Model_Post::create(Input::post('title'), Input::post('body'), $user_id);

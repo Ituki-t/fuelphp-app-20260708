@@ -28,9 +28,14 @@ class Model_Post extends Model
 
     public static function find_by_id($id)
     {
-        return \DB::select()
+        return \DB::select(
+            'posts.*',
+            array('users.username', 'username')
+        )
             ->from('posts')
-            ->where('id', $id)
+            ->join('users')
+            ->on('posts.user_id', '=', 'users.id')
+            ->where('posts.id', $id)
             ->execute()
             ->current();
     }
