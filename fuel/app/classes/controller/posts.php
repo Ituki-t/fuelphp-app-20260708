@@ -55,6 +55,11 @@ class Controller_Posts extends Controller_Template
             return Response::redirect('posts/index');
         }
 
+        if ($post['user_id'] != \Session::get('user_id')) {
+            \Session::set_flash('error', 'You do not have permission to edit this post.');
+            return Response::redirect('posts/index');
+        }
+
         if (Input::method() == 'POST')
             {
                 Model_Post::update($id, array(
@@ -76,6 +81,11 @@ class Controller_Posts extends Controller_Template
         $post = Model_Post::find_by_id($id);
 
         if (!$post) {
+            return Response::redirect('posts/index');
+        }
+
+        if ($post['user_id'] != \Session::get('user_id')) {
+            \Session::set_flash('error', 'You do not have permission to delete this post.');
             return Response::redirect('posts/index');
         }
 
