@@ -1,5 +1,3 @@
-<h2>Sign Up</h2>
-
 <?php echo Form::open(array('method' => 'post')); ?>
 
     <p>
