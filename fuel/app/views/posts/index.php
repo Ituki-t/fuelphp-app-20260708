@@ -1,6 +1,8 @@
 <form action="/posts/index" method="get">
-    <input type="text" name="keyword" value="<?php echo e($keyword) ?>" placeholder="キーワードを入力">
-    <button type="submit">検索</button>
+    <div class="input-group">
+        <input type="text" name="keyword" value="<?php echo e($keyword) ?>" placeholder="キーワードを入力">
+        <button type="submit">検索</button>
+    </div>
 </form>
 
 <?php echo Html::anchor('posts/create', 'Create New Post'); ?>

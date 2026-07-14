@@ -4,7 +4,13 @@
     <meta charset="utf-8">
     <title><?php echo isset($title) ? e($title) : '掲示板'; ?></title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <?php echo Asset::css('bootstrap.min.css'); ?>
+    <?php echo Asset::js('bootstrap.bundle.min.js'); ?>
+
+    <?php echo Asset::css('style.css'); ?>
+
+
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"> -->
 </head>
 <body class="bg-light">
 
