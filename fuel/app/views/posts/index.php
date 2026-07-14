@@ -1,3 +1,4 @@
+<?php echo Asset::js('posts/index.js'); ?>
 <form action="<?php echo Uri::create('posts/index'); ?>" method="get" class="mb-4">
     <div class="input-group">
         <input
