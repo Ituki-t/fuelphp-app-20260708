@@ -8,6 +8,7 @@
     <?php echo Asset::js('bootstrap.bundle.min.js'); ?>
 
     <?php echo Asset::css('style.css'); ?>
+    <?php echo Asset::js('knockout-3.5.3.js'); ?>
 
 </head>
 <body class="bg-light">
@@ -91,6 +92,9 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
     </script>
 
+    <script>
+        console.log("Knockout:", ko.version);
+    </script>
 
 
 </body>
