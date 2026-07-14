@@ -1,5 +1,3 @@
-<h2>update</h2>
-
 <?php echo Form::open(array('action' => 'posts/edit/' . $post['id'], 'method' => 'post')); ?>
 
     <p>

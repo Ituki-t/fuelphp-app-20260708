@@ -1,5 +1,3 @@
-<h2>Create Post</h2>
-
 <form method="post" action="/posts/create">
     <div>
         <label>Title:</label>
