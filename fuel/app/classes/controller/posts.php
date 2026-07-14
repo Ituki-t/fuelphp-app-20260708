@@ -13,10 +13,19 @@ class Controller_Posts extends Controller_Template
 
     public function action_index()
     {
-        $posts = Model_Post::find_all();
+        $keyword = Input::get('keyword', '');
+
+        if ($keyword) {
+            $posts = Model_Post::search($keyword);
+        } else {
+            $posts = Model_Post::find_all();
+        }
 
         $this->template->title = 'Posts';
-        $this->template->content = View::forge('posts/index', array('posts' => $posts));
+        $this->template->content = View::forge('posts/index', array(
+            'posts' => $posts,
+            'keyword' => $keyword,
+        ));
     }
 
 

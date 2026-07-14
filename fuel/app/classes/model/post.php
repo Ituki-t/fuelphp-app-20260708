@@ -56,4 +56,18 @@ class Model_Post extends Model
             ->where('id', $id)
             ->execute();
     }
+
+
+    public static function search($keyword)
+    {
+        return \DB::select()
+            ->from('posts')
+            ->where_open()
+                ->where('title', 'like', '%' . $keyword . '%')
+                ->or_where('body', 'like', '%' . $keyword . '%')
+            ->where_close()
+            ->order_by('created_at', 'desc')
+            ->execute()
+            ->as_array(); // 配列を返す
+    }
 }
