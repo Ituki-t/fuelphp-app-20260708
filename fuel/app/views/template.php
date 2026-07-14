@@ -58,6 +58,13 @@
                         <li class="nav-item">
                             <a
                                 class="nav-link"
+                                href="<?= Uri::create('accounts/signup') ?>">
+                                新規登録
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
                                 href="<?= Uri::create('accounts/login') ?>">
                                 ログイン
                             </a>
