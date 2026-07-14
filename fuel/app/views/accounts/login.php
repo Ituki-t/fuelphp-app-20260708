@@ -1,5 +1,3 @@
-<h2>login</h2>
-
 <?php if ($error): ?>
     <p><?php echo $error; ?></p>
 <?php endif; ?>
