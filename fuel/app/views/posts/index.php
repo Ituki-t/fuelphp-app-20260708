@@ -1,13 +1,3 @@
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h2 mb-0">投稿一覧</h1>
-
-    <?php echo Html::anchor(
-        'posts/create',
-        '新規投稿',
-        array('class' => 'btn btn-primary')
-    ); ?>
-</div>
-
 <form action="<?php echo Uri::create('posts/index'); ?>" method="get" class="mb-4">
     <div class="input-group">
         <input
