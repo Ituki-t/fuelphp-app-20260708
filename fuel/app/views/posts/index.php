@@ -7,9 +7,14 @@
             class="form-control"
             value="<?php echo e($keyword); ?>"
             placeholder="キーワードを入力"
+            data-bind="value: keyword"
         >
 
-        <button type="submit" class="btn btn-outline-primary">
+        <button
+            type="button"
+            class="btn btn-outline-primary"
+            data-bind="click: search"
+        >
             検索
         </button>
     </div>
