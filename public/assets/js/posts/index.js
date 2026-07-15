@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     return response.json();
                 })
                 .then(function (posts) {
-                    console.log('取得した投稿:', posts);
                     self.posts(posts);
                 })
                 .catch(function (error) {
