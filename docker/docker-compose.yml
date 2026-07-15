@@ -20,6 +20,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: fuelphp-db
+    volumes:
+      - db_data:/var/lib/mysql
     ports:
       - "3306:3306"
     networks:
@@ -28,3 +30,6 @@ services:
 networks:
   fuelphp-network:
     driver: bridge
+
+volumes:
+  db_data:
