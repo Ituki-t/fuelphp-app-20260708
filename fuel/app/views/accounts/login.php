@@ -1,5 +1,3 @@
-<h2>login</h2>
-
 <?php if ($error): ?>
     <p><?php echo $error; ?></p>
 <?php endif; ?>
@@ -17,4 +15,13 @@
     <p>
         <?php echo Form::submit('submit', 'Login'); ?>
     </p>
+
+    <input
+        type="checkbox"
+        id="remember"
+        name="remember"
+        value="1"
+    >
+    <label for="remember">ログイン状態を保持する</label>
+
 <?php echo Form::close(); ?>

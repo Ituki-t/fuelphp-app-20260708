@@ -6,10 +6,47 @@ class Controller_Posts extends Controller_Template
     {
         parent::before();
 
-        if (\Session::get('user_id') === null) {
+        if (\Session::get('user_id') !== null) {
+            return ;
+        }
+
+        // LOGIN保持の処理
+        \Config::load('remember', true);
+        $cookie_name = \Config::get('remember.cookie_name');
+        $token = \Cookie::get($cookie_name);
+
+        if (empty($token)) {
             return \Response::redirect('accounts/login');
         }
+
+        $user = \Model_User::find_by_remember_token($token);
+
+        if (!$user) {
+            \Cookie::delete($cookie_name);
+            return \Response::redirect('accounts/login');
+        }
+
+        // sessionを復元
+        \Session::set('user_id', $user['id']);
+        \Session::set('username', $user['username']);
     }
+
+
+    public function action_search()
+    {
+        $keyword = Input::get('keyword', '');
+
+        if ($keyword) {
+            $posts = Model_Post::search($keyword);
+        } else {
+            $posts = Model_Post::find_all();
+        }
+
+        return \Response::forge(
+            json_encode($posts, JSON_UNESCAPED_UNICODE)
+        )->set_header('Content-Type', 'application/json');
+    }
+
 
     public function action_index()
     {
@@ -35,7 +72,7 @@ class Controller_Posts extends Controller_Template
         if (Input::method() == 'POST')
             {
                 Model_Post::create(Input::post('title'), Input::post('body'), $user_id);
-                Response::redirect('posts/index');
+                \Response::redirect('posts/index');
             }
 
             $this->template->title = 'Create Post';
@@ -48,7 +85,7 @@ class Controller_Posts extends Controller_Template
         $post = Model_Post::find_by_id($id);
 
         if (!$post) {
-            return Response::redirect('posts/index');
+            return \Response::redirect('posts/index');
         }
 
         $this->template->title = 'Post Detail';
@@ -76,7 +113,7 @@ class Controller_Posts extends Controller_Template
                     'body' => Input::post('body'),
                     'updated_at' => time(),
                 ));
-                Response::redirect('posts/index');
+                \Response::redirect('posts/index');
             }
 
         $this->template->title = 'Edit Post';
@@ -100,6 +137,6 @@ class Controller_Posts extends Controller_Template
 
         Model_Post::delete($id);
 
-        return Response::redirect('posts/index');
+        return \Response::redirect('posts/index');
     }
 }

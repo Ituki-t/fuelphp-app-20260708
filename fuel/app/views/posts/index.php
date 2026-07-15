@@ -1,24 +1,60 @@
-<h1>Posts</h1>
+<?php echo Asset::js('posts/index.js'); ?>
+<form
+    action="<?php echo Uri::create('posts/index'); ?>"
+    method="get"
+    class="mb-4"
+    data-bind="submit: search">
+    <div class="input-group">
+        <input
+            type="text"
+            name="keyword"
+            class="form-control"
+            value="<?php echo e($keyword); ?>"
+            placeholder="キーワードを入力"
+            data-bind="value: keyword , valueUpdate: 'input'"
+        >
 
-<form action="/posts/index" method="get">
-    <input type="text" name="keyword" value="<?php echo e($keyword) ?>" placeholder="キーワードを入力">
-    <button type="submit">検索</button>
+        <button
+            type="submit"
+            class="btn btn-outline-primary"
+        >
+            検索
+        </button>
+    </div>
 </form>
 
-<?php echo Html::anchor('posts/create', 'Create New Post'); ?>
-
-<?php echo Html::anchor('accounts/logout', 'Logout'); ?>
-
-
 <?php if (empty($posts)): ?>
-    <p>No posts found.</p>
+
+    <div class="alert alert-secondary">
+        投稿が見つかりませんでした。
+    </div>
+
 <?php else: ?>
-    <ul>
-        <?php foreach ($posts as $post): ?>
-            <div>
-                <h2><?php echo Html::anchor('posts/detail/' . $post['id'], e($post['title'])); ?></h2>
-                <p><?php echo e($post['body']); ?></p>
+
+    <div class="row g-3" data-bind="foreach: posts">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title h5">
+                            <a
+                                class="text-decoration-none"
+                                data-bind="
+                                    text: title,
+                                    attr: { href: '/posts/detail/' + id }
+                                "
+                            >
+                        </a>
+                        </h2>
+
+                        <p class="card-text text-secondary">
+                        <p
+                            data-bind="text: body"
+                        ></p>
+                        </p>
+                    </div>
+                </div>
             </div>
-        <?php endforeach; ?>
-    </ul>
+    </div>
+
 <?php endif; ?>
+</div>

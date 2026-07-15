@@ -23,4 +23,15 @@ class Model_User extends Model
             ))
             ->execute();
     }
+
+
+    public static function update_remember_token($user_id, $token)
+    {
+        return \DB::update('users')
+            ->set(array(
+                'remember_token' => $token,
+            ))
+            ->where('id', $user_id)
+            ->execute();
+    }
 }
