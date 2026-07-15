@@ -19,9 +19,6 @@ return array(
     ),
     'package' => 
     array(
-      'auth' => 
-      array(
-      ),
     ),
   ),
   'folder' => 'migrations/',
