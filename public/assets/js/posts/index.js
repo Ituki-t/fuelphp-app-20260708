@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         self.search = function () {
             console.log('Searching for:', self.keyword());
-        };
+        }
     }
 
     ko.applyBindings(new PostViewModel());
