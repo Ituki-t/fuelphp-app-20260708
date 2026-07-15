@@ -25,6 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         };
 
+        self.keyword.subscribe(function () {
+            self.search();
+        });
+
+
         self.search(); // 初期表示時に全件取得
     }
 
