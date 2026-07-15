@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 .catch(function (error) {
                     console.error('Error fetching posts:', error);
                 });
-        }
+        };
+
+        self.search(); // 初期表示時に全件取得
     }
 
     ko.applyBindings(new PostViewModel());

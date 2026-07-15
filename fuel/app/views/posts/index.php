@@ -7,7 +7,7 @@
             class="form-control"
             value="<?php echo e($keyword); ?>"
             placeholder="キーワードを入力"
-            data-bind="value: keyword"
+            data-bind="value: keyword , valueUpdate: 'input'"
         >
 
         <button
@@ -28,26 +28,29 @@
 
 <?php else: ?>
 
-    <div class="row g-3">
-        <?php foreach ($posts as $post): ?>
+    <div class="row g-3" data-bind="foreach: posts">
             <div class="col-12">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h2 class="card-title h5">
-                            <?php echo Html::anchor(
-                                'posts/detail/'.$post['id'],
-                                e($post['title']),
-                                array('class' => 'text-decoration-none')
-                            ); ?>
+                            <a
+                                class="text-decoration-none"
+                                data-bind="
+                                    text: title,
+                                    attr: { href: 'posts/detail/' + id }
+                                "
+                            >
+                        </a>
                         </h2>
 
                         <p class="card-text text-secondary">
-                            <?php echo nl2br(e($post['body'])); ?>
+                        <p
+                            data-bind="text: body"
+                        ></p>
                         </p>
                     </div>
                 </div>
             </div>
-        <?php endforeach; ?>
     </div>
 
 <?php endif; ?>
