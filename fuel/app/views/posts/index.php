@@ -40,7 +40,7 @@
                                 class="text-decoration-none"
                                 data-bind="
                                     text: title,
-                                    attr: { href: 'posts/detail/' + id }
+                                    attr: { href: '/posts/detail/' + id }
                                 "
                             >
                         </a>

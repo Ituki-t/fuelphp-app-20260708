@@ -25,13 +25,34 @@ class Controller_Accounts extends Controller_Template
         if (\Input::method() == 'POST') {
             $username = \Input::post('username');
             $password = \Input::post('password');
+            $remember = \Input::post('remember', false);
 
             $user = Model_User::find_by_username($username);
 
             if ($user && password_verify($password, $user['password'])) {
                 \Session::set('user_id', $user['id']);
                 \Session::set('username', $user['username']);
+
+                if ($remember) {
+                    \Config::load('remember', true);
+
+                    $token = bin2hex(random_bytes(32));
+
+                    Model_User::update_remember_token(
+                        $user['id'],
+                        $token
+                    );
+
+                    // cookieにトークンを保存
+                    \Cookie::set(
+                        \Config::get('remember.cookie_name'),
+                        $token,
+                        \Config::get('remember.expiration')
+                    );
+                }
+
                 return \Response::redirect('posts/index');
+
             } else {
                 $error = 'Invalid username or password.';
             }

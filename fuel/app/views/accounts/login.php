@@ -15,4 +15,13 @@
     <p>
         <?php echo Form::submit('submit', 'Login'); ?>
     </p>
+
+    <input
+        type="checkbox"
+        id="remember"
+        name="remember"
+        value="1"
+    >
+    <label for="remember">ログイン状態を保持する</label>
+
 <?php echo Form::close(); ?>
