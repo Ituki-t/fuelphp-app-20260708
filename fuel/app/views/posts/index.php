@@ -1,5 +1,9 @@
 <?php echo Asset::js('posts/index.js'); ?>
-<form action="<?php echo Uri::create('posts/index'); ?>" method="get" class="mb-4">
+<form
+    action="<?php echo Uri::create('posts/index'); ?>"
+    method="get"
+    class="mb-4"
+    data-bind="submit: search">
     <div class="input-group">
         <input
             type="text"
@@ -11,9 +15,8 @@
         >
 
         <button
-            type="button"
+            type="submit"
             class="btn btn-outline-primary"
-            data-bind="click: search"
         >
             検索
         </button>
