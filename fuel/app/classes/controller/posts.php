@@ -11,6 +11,7 @@ class Controller_Posts extends Controller_Template
         }
     }
 
+
     public function action_search()
     {
         $keyword = Input::get('keyword', '');
